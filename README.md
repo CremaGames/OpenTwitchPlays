@@ -18,7 +18,7 @@ Features:
 
 Getting started:
 =============
-* Download the binaries ([x64](https://github.com/Francesco149/OpenTwitchPlays/releases/download/r5/OpenTwitchPlays-r5_x64.zip) or [x86](https://github.com/Francesco149/OpenTwitchPlays/releases/download/r5/OpenTwitchPlays-r5_x86.zip)) and make sure you have the .NET Framework version 4.0 or higher.
+* Download the binaries ([x64](https://github.com/CremaGames/OpenTwitchPlays/releases/download/r6/x64.rar) or [x86](https://github.com/CremaGames/OpenTwitchPlays/releases/download/r6/x86.rar)) and make sure you have the .NET Framework version 4.0 or higher.
 * Get [HexChat](http://hexchat.github.io/) and set it up to connect to your twitch channel's chat by following [this guide](http://teamfortress.tv/forum/thread/719-tutorial-connecting-to-twitch-tv-via-xchat-mirc/1).
 * Go to Settings -> Preferences on HexChat and click on the Logging tab on the left and set it up like this: ![HexChat logging settings](http://i.imgur.com/poyNNf1.png)
 * Restart HexChat and join your channel's chat.
