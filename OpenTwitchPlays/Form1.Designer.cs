@@ -58,14 +58,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerProcessMessages = new System.Windows.Forms.Timer(this.components);
             this.timerUptime = new System.Windows.Forms.Timer(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textSaveCombo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textAutosaveInterval = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textDelay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -85,11 +78,19 @@
             this.toolStripMenuItemConfigure = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.democracySettings = new System.Windows.Forms.GroupBox();
+            this.progressBarDemocracyCurrent = new System.Windows.Forms.ProgressBar();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textDemocracyVoteTime = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkDemocracyMode = new System.Windows.Forms.CheckBox();
+            this.timerDemocracyMode = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.contextMenuStripTray.SuspendLayout();
+            this.democracySettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textDemocracyVoteTime)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxCommands
@@ -98,8 +99,9 @@
             this.listBoxCommands.FormattingEnabled = true;
             this.listBoxCommands.Location = new System.Drawing.Point(10, 20);
             this.listBoxCommands.Name = "listBoxCommands";
-            this.listBoxCommands.Size = new System.Drawing.Size(500, 99);
+            this.listBoxCommands.Size = new System.Drawing.Size(500, 203);
             this.listBoxCommands.TabIndex = 0;
+            this.listBoxCommands.SelectedIndexChanged += new System.EventHandler(this.listBoxCommands_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -107,10 +109,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.listBoxCommands);
-            this.groupBox1.Location = new System.Drawing.Point(12, 442);
+            this.groupBox1.Location = new System.Drawing.Point(12, 449);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 10);
-            this.groupBox1.Size = new System.Drawing.Size(520, 129);
+            this.groupBox1.Size = new System.Drawing.Size(520, 233);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command log";
@@ -292,7 +294,7 @@
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(0, 584);
+            this.statusBar1.Location = new System.Drawing.Point(0, 688);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(544, 22);
             this.statusBar1.TabIndex = 3;
@@ -302,6 +304,7 @@
             // 
             this.openFileDialog1.FileName = "chatlog.txt";
             this.openFileDialog1.Title = "Select your IRC logfile";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // timerProcessMessages
             // 
@@ -312,72 +315,10 @@
             this.timerUptime.Interval = 500;
             this.timerUptime.Tick += new System.EventHandler(this.timerUptime_Tick);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.textSaveCombo);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textAutosaveInterval);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(12, 158);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(520, 48);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Autosave";
-            // 
-            // textSaveCombo
-            // 
-            this.textSaveCombo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textSaveCombo.Location = new System.Drawing.Point(405, 17);
-            this.textSaveCombo.Name = "textSaveCombo";
-            this.textSaveCombo.Size = new System.Drawing.Size(100, 20);
-            this.textSaveCombo.TabIndex = 4;
-            this.textSaveCombo.Text = "+{F2}";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(311, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Key combination:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "seconds";
-            // 
-            // textAutosaveInterval
-            // 
-            this.textAutosaveInterval.Location = new System.Drawing.Point(55, 17);
-            this.textAutosaveInterval.Name = "textAutosaveInterval";
-            this.textAutosaveInterval.Size = new System.Drawing.Size(100, 20);
-            this.textAutosaveInterval.TabIndex = 1;
-            this.textAutosaveInterval.Text = "60";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Every ";
-            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.checkMultipleKeyPresses);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.textDelay);
             this.groupBox4.Controls.Add(this.label5);
@@ -388,24 +329,12 @@
             this.groupBox4.Controls.Add(this.textCommand);
             this.groupBox4.Controls.Add(this.buttonAddKeyBinding);
             this.groupBox4.Controls.Add(this.listKeyBindings);
-            this.groupBox4.Location = new System.Drawing.Point(12, 213);
+            this.groupBox4.Location = new System.Drawing.Point(12, 238);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(520, 223);
+            this.groupBox4.Size = new System.Drawing.Size(520, 201);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Key bindings";
-            // 
-            // checkMultipleKeyPresses
-            // 
-            this.checkMultipleKeyPresses.AutoSize = true;
-            this.checkMultipleKeyPresses.Checked = true;
-            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
-            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
-            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
-            this.checkMultipleKeyPresses.TabIndex = 10;
-            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
-            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -563,13 +492,78 @@
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
+            // democracySettings
+            // 
+            this.democracySettings.Controls.Add(this.progressBarDemocracyCurrent);
+            this.democracySettings.Controls.Add(this.label8);
+            this.democracySettings.Controls.Add(this.textDemocracyVoteTime);
+            this.democracySettings.Controls.Add(this.label7);
+            this.democracySettings.Controls.Add(this.checkDemocracyMode);
+            this.democracySettings.Location = new System.Drawing.Point(12, 155);
+            this.democracySettings.Name = "democracySettings";
+            this.democracySettings.Size = new System.Drawing.Size(520, 77);
+            this.democracySettings.TabIndex = 6;
+            this.democracySettings.TabStop = false;
+            this.democracySettings.Text = "Democracy Settings";
+            // 
+            // progressBarDemocracyCurrent
+            // 
+            this.progressBarDemocracyCurrent.Location = new System.Drawing.Point(314, 37);
+            this.progressBarDemocracyCurrent.Name = "progressBarDemocracyCurrent";
+            this.progressBarDemocracyCurrent.Size = new System.Drawing.Size(191, 23);
+            this.progressBarDemocracyCurrent.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(310, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Current Vote Time";
+            // 
+            // textDemocracyVoteTime
+            // 
+            this.textDemocracyVoteTime.Location = new System.Drawing.Point(91, 43);
+            this.textDemocracyVoteTime.Name = "textDemocracyVoteTime";
+            this.textDemocracyVoteTime.Size = new System.Drawing.Size(120, 20);
+            this.textDemocracyVoteTime.TabIndex = 3;
+            this.textDemocracyVoteTime.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Vote Time (s):";
+            // 
+            // checkDemocracyMode
+            // 
+            this.checkDemocracyMode.AutoSize = true;
+            this.checkDemocracyMode.Location = new System.Drawing.Point(15, 20);
+            this.checkDemocracyMode.Name = "checkDemocracyMode";
+            this.checkDemocracyMode.Size = new System.Drawing.Size(110, 17);
+            this.checkDemocracyMode.TabIndex = 0;
+            this.checkDemocracyMode.Text = "Democracy Mode";
+            this.checkDemocracyMode.UseVisualStyleBackColor = true;
+            // 
+            // timerDemocracyMode
+            // 
+            this.timerDemocracyMode.Tick += new System.EventHandler(this.timerDemocracyMode_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 606);
+            this.ClientSize = new System.Drawing.Size(544, 710);
+            this.Controls.Add(this.democracySettings);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.statusBar1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -583,11 +577,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.contextMenuStripTray.ResumeLayout(false);
+            this.democracySettings.ResumeLayout(false);
+            this.democracySettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textDemocracyVoteTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -619,12 +614,6 @@
         private System.Windows.Forms.Timer timerUptime;
         private System.Windows.Forms.MenuItem menuAttach;
         private System.Windows.Forms.MenuItem menuUsePostMessage;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textSaveCombo;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textAutosaveInterval;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox comboKeyBindings;
         private System.Windows.Forms.TextBox textCommand;
@@ -641,7 +630,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.MenuItem menuSaveConfig;
         private System.Windows.Forms.MenuItem menuUseSendKeys;
-        private System.Windows.Forms.CheckBox checkMultipleKeyPresses;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTray;
@@ -649,6 +637,13 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfigure;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.GroupBox democracySettings;
+        private System.Windows.Forms.CheckBox checkDemocracyMode;
+        private System.Windows.Forms.NumericUpDown textDemocracyVoteTime;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ProgressBar progressBarDemocracyCurrent;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Timer timerDemocracyMode;
     }
 }
 
